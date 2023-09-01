@@ -84,7 +84,7 @@ const Navbar = () => {
             onClick={() => {}}
           >
             <Image
-              src={images.techiveLogo}
+              src={images.logo02}
               objectFit="contain"
               width={32}
               height={32}
