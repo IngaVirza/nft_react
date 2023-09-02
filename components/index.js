@@ -2,7 +2,7 @@
 import Navbar from './Navbar';
 import Button from './Button';
 import Banner from './Banner';
+import CreatorCard from './CreatorCard';
 import Footer from './Footer';
 
-
-export { Navbar, Footer, Button, Banner };
+export { Navbar, Button, Banner, CreatorCard, Footer };
