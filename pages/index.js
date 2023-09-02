@@ -1,9 +1,9 @@
-import { useRef, useEffect, useState, SearchBar } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useTheme } from 'next-themes';
 import { Banner, CreatorCard } from '../components';
 import images from '../assets';
-import { makeId } from '../utils/makeId'; 
+import { makeId } from '../utils/makeId';
 import NFTCard from '../components/NFTCard';
 
 const Home = () => {
