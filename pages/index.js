@@ -1,17 +1,28 @@
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState, useContext } from 'react';
 import Image from 'next/image';
 import { useTheme } from 'next-themes';
 import { Banner, CreatorCard } from '../components';
 import images from '../assets';
 import { makeId } from '../utils/makeId';
 import NFTCard from '../components/NFTCard';
+import { NFTContext } from '../context/NFTContext';
 
 const Home = () => {
+  const { fetchNFTs } = useContext(NFTContext);
   const { theme } = useTheme();
   const [hideButtons, setHideButtons] = useState(false);
+  const [nfts, setNfts] = useState([]);
   const parentRef = useRef(null);
   const scrollRef = useRef(null);
 
+  useEffect(() => {
+    fetchNFTs()
+      .then((items) => {
+        setNfts(items);
+
+        console.log(items);
+      });
+  }, []);
 
   const handleScroll = (direction) => {
     const { current } = scrollRef;
@@ -121,23 +132,24 @@ const Home = () => {
             <h1 className="flex-1 font-poppins dark:text-white text-nft-black-1 text-2xl minlg:text-4xl font-semibold sm:mb-4">
               Hot NFTs
             </h1>
-            </div>
           </div>
-          <div className="mt-3 w-full flex flex-wrap justify-center">
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => (
-              <NFTCard
-                key={`nft-${i}`}
-                nft={{
-                  i,
-                  name: `Nifty NFT ${i}`,
-                  price: (10 - i * 0.534).toFixed(2),
-                  seller: `0x${makeId(3)}...${makeId(4)}`,
-                  owner: `0x${makeId(3)}...${makeId(4)}`,
-                  description: 'Cool NFT on Sale',
-                }}
-              />
-            ))}
-          </div>
+        </div>
+        <div className="mt-3 w-full flex flex-wrap justify-center">
+          {nfts.map((nft) => <NFTCard key={nft.tokenId} nft={nft} />)}
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => (
+            <NFTCard
+              key={`nft-${i}`}
+              nft={{
+                i,
+                name: `Nifty NFT ${i}`,
+                price: (10 - i * 0.534).toFixed(2),
+                seller: `0x${makeId(3)}...${makeId(4)}`,
+                owner: `0x${makeId(3)}...${makeId(4)}`,
+                description: 'Cool NFT on Sale',
+              }}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
