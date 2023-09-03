@@ -4,7 +4,6 @@ import { NFTContext } from '../context/NFTContext';
 const Input = ({ inputType, title, placeholder, handleClick }) => {
   const { nftCurrency } = useContext(NFTContext);
 
-  console.log('hi');
   return (
     <div className="mt-10 w-full">
       <p className="flex-1 font-poppins dark:text-white text-nft-black-1 font-semibold text-xl">{title}</p>
