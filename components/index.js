@@ -8,6 +8,6 @@ import Input from './Input';
 import Footer from './Footer';
 import Loader from './Loader';
 import Modal from './Modal';
+import SearchBar from './SearchBar'
 
-
-export { Navbar, Button, Banner, CreatorCard, NFTCard, Input, Footer, Loader, Modal };
+export { Navbar, Button, Banner, CreatorCard, NFTCard, Input, Footer, Loader, Modal, SearchBar };
